@@ -1,0 +1,62 @@
+<div class="mat-elevation-z2">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let row">{{ row['number'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="under30">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Menor de 30</th>
+      <td mat-cell *matCellDef="let row">{{ row['under30'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="champion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campeón</th>
+      <td mat-cell *matCellDef="let row">{{ row['champion'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Posición</th>
+      <td mat-cell *matCellDef="let row">{{ row['position'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="skillfulLeg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pierna hábil</th>
+      <td mat-cell *matCellDef="let row">{{ row['skillfulLeg'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="goodChoice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Buen fichaje</th>
+      <td mat-cell *matCellDef="let row">{{ row['goodChoice'] }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <!--<ng-container matColumnDef="yesOdds">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Probabilidad de SÍ</th>
+      <td mat-cell *matCellDef="let row">{{ row['yesOdds'] }}</td>
+    </ng-container>
+
+    &lt;!&ndash; Name Column &ndash;&gt;
+    <ng-container matColumnDef="noOdds">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Probabilidad de NO</th>
+      <td mat-cell *matCellDef="let row">{{ row['noOdds'] }}</td>
+    </ng-container>-->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data?.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+</div>
