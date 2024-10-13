@@ -1,0 +1,46 @@
+<form id="form" class="d-flex justify-content-evenly flex-wrap"
+      [formGroup]="predictionForm" (ngSubmit)="submitData()">
+  <mat-form-field>
+    <mat-label>Menor de 30</mat-label>
+    <mat-select formControlName="under30">
+      <mat-option value="SI">Sí</mat-option>
+      <mat-option value="NO">No</mat-option>
+    </mat-select>
+    <mat-error>Este campo es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Campeón</mat-label>
+    <mat-select formControlName="champion">
+      <mat-option value="SI">Sí</mat-option>
+      <mat-option value="NO">No</mat-option>
+    </mat-select>
+    <mat-error>Este campo es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Posición</mat-label>
+    <mat-select formControlName="position">
+      <mat-option value="DELANTERO">Delantero</mat-option>
+      <mat-option value="MEDIO">Medio</mat-option>
+      <mat-option value="DEFENSA">Defensa</mat-option>
+      <mat-option value="PORTERO">Portero</mat-option>
+    </mat-select>
+    <mat-error>Este campo es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Pierna hábil</mat-label>
+    <mat-select formControlName="skillfulLeg">
+      <mat-option value="DERECHA">Derecha</mat-option>
+      <mat-option value="IZQUIERDA">Izquierda</mat-option>
+    </mat-select>
+    <mat-error>Este campo es requerido</mat-error>
+  </mat-form-field>
+</form>
+
+<section class="text-center mb-3">
+  <button type="submit" mat-flat-button matTooltip="Realizar y registrar predicción" form="form">
+    <mat-icon>timeline</mat-icon> Predecir
+  </button>
+</section>

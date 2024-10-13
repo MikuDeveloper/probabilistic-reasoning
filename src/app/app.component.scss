@@ -1,6 +1,6 @@
 mat-toolbar {
-  background-color: #004f4f;
-  color: #0dd;
+  background-color: var(--background-1);
+  color: var(--text-color-1);
 }
 
 input[type="file"] {

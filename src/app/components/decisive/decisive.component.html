@@ -1,0 +1,9 @@
+<mat-dialog-content class="text-center">
+  <h6>¿Desea eliminar los datos de la tabla?</h6>
+  <p>Esta acción no se puede deshacer</p>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button (click)="dialogRef.close(false)">Cancelar</button>
+  <button mat-button [mat-dialog-close]="true">Aceptar</button>
+</mat-dialog-actions>

@@ -1,8 +1,10 @@
 export interface HistoricTableItem {
-  number: string;
+  number: number;
   under30: string;
   champion: string;
   position: string;
   skillfulLeg: string;
   goodChoice: string;
+  yesOdds: number | string;
+  noOdds: number | string;
 }

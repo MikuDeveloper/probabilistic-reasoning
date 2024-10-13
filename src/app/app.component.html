@@ -1,16 +1,50 @@
 <mat-toolbar>
-  <span>Razonamiento probabilístico</span>
+  <div>
+    <span>{{ title }}</span>
+    <br />
+    <span>{{ subtitle }}</span>
+  </div>
   <span class="spacer"></span>
+
+  @if (tableComponent.dataSource.data.length > 0) {
+    <button type="button" mat-icon-button matTooltip="Remover información" (click)="removeData()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  }
 </mat-toolbar>
 
-<input #inputFile type="file" name="historic" id="historic" accept=".xlsx, .xls" (change)="uploadFile($event, inputFile)"/>
-<button type="button" mat-flat-button (click)="inputFile.click()">
-  <mat-icon>upload-file</mat-icon>
-  Cargar históricos
-</button>
+<main class="container"
+      [ngClass]="{ 'd-flex justify-content-center align-items-center' : tableComponent.dataSource.data.length === 0 }">
+  <div class="row" [ngClass]="{ 'visually-hidden' : tableComponent.dataSource.data.length > 0 }">
+    <section class="mt-3 mb-3 text-center">
+      <input #inputFile type="file" class="form-control" name="historic" id="historic" accept=".xlsx, .xls"
+             (change)="uploadFile($event, inputFile)"/>
+      <button type="button" mat-flat-button matTooltip="Cargar archivo de Excel" (click)="inputFile.click()">
+        <mat-icon>upload-file</mat-icon> Cargar históricos
+      </button>
+      <p class="m-3">No hay datos registrados</p>
+    </section>
+  </div>
 
-@if (historicData.length > 0) {
-  <app-historic-table [data]="historicData"/>
-}
+  <div class="row" [ngClass]="{ 'visually-hidden' : tableComponent.dataSource.data.length == 0 }">
+    <section class="mb-2 mt-2">
+      <h6 class="text-center">PREDICCIÓN</h6>
+      <mat-divider class="mb-3"/>
+      <app-prediction-form [historicalData]="tableComponent.dataSource.data" />
+    </section>
+
+    <section [ngClass]="{ 'visually-hidden' : tableComponent.dataSource.data.length == 0 }">
+      <h6 class="text-center">HISTÓRICOS</h6>
+      <mat-divider class="mb-3"/>
+      <app-historic-table #tableComponent/>
+    </section>
+
+    <section class="text-center" [ngClass]="{ 'visually-hidden' : tableComponent.dataSource.data.length > 0 }">
+      <h6>No hay datos registrados</h6>
+    </section>
+  </div>
+</main>
+
+<img src="pictures/miku-web.webp" alt="miku-web" title="初音ミク" height="50" class="position-fixed bottom-0 end-0" />
 
 <router-outlet />

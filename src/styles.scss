@@ -1,8 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+:root {
+  --background-1: #004f4f;
+  --text-color-1: #0dd;
+}
+
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: var(--mat-app-background-color)
+  background-color: var(--mat-app-background-color);
+
+  mat-toolbar {
+    //flex: 0 0 auto;
+    min-height: 9vh;
+  }
+
+  main {
+    min-height: 91vh;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--text-color-1);
 }
