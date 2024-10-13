@@ -60,10 +60,11 @@ export class AppComponent {
         historic.noOdds = historic.noOdds || '';
         batch.set(doc(this._firestore, 'historical', docRef.id), historic, { merge: true });
       });
-      await batch.commit();
+      await batch.commit().then(() => {
+        this._snackBar.open('¡Datos históricos importados éxitosamente!', 'Aceptar');
+      });
     }
     inputFile.value = '';
-    this._snackBar.open('¡Datos históricos importados éxitosamente!', 'Aceptar');
   }
 
   async removeData() {
@@ -76,8 +77,9 @@ export class AppComponent {
         ids.forEach((id) => {
           batch.delete(doc(this._firestore, 'historical', id));
         });
-        await batch.commit();
-        this._snackBar.open('¡Datos históricos eliminados!', 'Cerrar');
+        await batch.commit().then(() => {
+          this._snackBar.open('¡Datos históricos eliminados!', 'Cerrar');
+        });
       }
     });
   }

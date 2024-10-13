@@ -4,7 +4,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
-import { collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { collection, doc, Firestore, writeBatch } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { HistoricTableItem } from '../../interfaces/historic-table-item';
@@ -53,17 +53,13 @@ export class PredictionFormComponent {
       this.calculate(historic);
 
       const docRef = doc(collection(this._firestore, 'historical'));
-      setDoc(docRef, historic, { merge: true })
-        .then(() => {
-          this._snackBar.open('Predicción realizada y registrada.', 'Cerrar');
-          this.formDirective.resetForm();
-        })
-        .catch(() => {
-          this._snackBar.open('Error al registrar la predicción.', 'Aceptar');
-        })
-        .finally(() => {
-          this._dialog.closeAll();
-        });
+      const batch = writeBatch(this._firestore);
+      batch.set(docRef, historic);
+      batch.commit().then(() => {
+        this._snackBar.open('Predicción realizada y registrada.', 'Cerrar');
+        this.formDirective.resetForm();
+        this._dialog.closeAll();
+      });
     }
   }
 
