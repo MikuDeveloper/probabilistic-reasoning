@@ -70,7 +70,6 @@ export class PredictionFormComponent {
   };
 
   private calculate = (historic: HistoricTableItem) => {
-    historic.goodChoice = '';
     const length = this.historicalData.length;
     const yes = this.historicalData
       .filter((item) => item.goodChoice === 'SI');
@@ -81,9 +80,8 @@ export class PredictionFormComponent {
     const yesSkillfulLeg = yes.filter((item) => item.skillfulLeg === historic.skillfulLeg).length;
 
     const yesPEH =
-      ((yesUnder30 / yes.length) * (yesChampion / yes.length) * (yesPosition / yes.length) * (yesSkillfulLeg / yes.length))
-      *
-      (yes.length / length);
+      (yesUnder30 / yes.length) * (yesChampion / yes.length) * (yesPosition / yes.length) * (yesSkillfulLeg / yes.length)
+
     const yesResult = (yes.length / length) * yesPEH;
 
     const no = this.historicalData
@@ -95,9 +93,8 @@ export class PredictionFormComponent {
     const noSkillfulLeg = no.filter((item) => item.skillfulLeg === historic.skillfulLeg).length;
 
     const noPEH =
-      ((noUnder30 / no.length) * (noChampion / no.length) * (noPosition / no.length) * (noSkillfulLeg / no.length))
-      *
-      (no.length / length);
+      (noUnder30 / no.length) * (noChampion / no.length) * (noPosition / no.length) * (noSkillfulLeg / no.length)
+
     const noResult = (no.length / length) * noPEH;
 
     historic.yesOdds = (yesResult * 100).toFixed(2);
