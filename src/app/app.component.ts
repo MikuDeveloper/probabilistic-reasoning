@@ -83,4 +83,8 @@ export class AppComponent {
       }
     });
   }
+
+  downloadData() {
+    this._filesService.downloadFile(this.tableComponent.dataSource.data).then();
+  }
 }

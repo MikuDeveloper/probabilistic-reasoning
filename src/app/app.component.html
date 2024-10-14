@@ -7,6 +7,9 @@
   <span class="spacer"></span>
 
   @if (tableComponent.dataSource.data.length > 0) {
+    <button type="button" mat-icon-button matTooltip="Descargar históricos" (click)="downloadData()">
+      <mat-icon>download</mat-icon>
+    </button>
     <button type="button" mat-icon-button matTooltip="Remover información" (click)="removeData()">
       <mat-icon>delete</mat-icon>
     </button>
